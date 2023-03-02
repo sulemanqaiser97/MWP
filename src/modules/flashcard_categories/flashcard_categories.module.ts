@@ -4,6 +4,6 @@ import { FlashcardCategoriesService } from './flashcard_categories.service';
 
 @Module({
   controllers: [FlashcardCategoriesController],
-  providers: [FlashcardCategoriesService]
+  providers: [FlashcardCategoriesService],
 })
 export class FlashcardCategoriesModule {}
