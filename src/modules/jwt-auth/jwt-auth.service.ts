@@ -9,7 +9,7 @@ export class JwtAuthService implements IAuth {
     generateJwt(payload: iPayload) {
         try {
             const user = {
-                userId: payload.userId,
+                user_id: payload.user_id,
                 email: payload.email,
             };
             const token = this.jwtService.sign({ user });

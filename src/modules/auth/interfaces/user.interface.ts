@@ -9,5 +9,6 @@ export interface iUser {
         phone_number: string;
         createdAt?: string,
         updatedAt?: string
-    }
+    },
+    token: string
 }

@@ -1,4 +1,6 @@
-import { Controller, Delete, Get, Param } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Req } from '@nestjs/common';
+import { ReqUser } from './dacorator/user.dacorator';
+import { ReqUserDto } from './dto/request-user.dto';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -7,8 +9,8 @@ export class UserController {
     constructor(private readonly userService: UserService) { }
 
     @Get('/all')
-    GetAll() {
-        console.log("Getting all users..");
+    GetAll(@ReqUser() user: ReqUserDto) {
+        console.log(user);
         return this.userService.findAllUsers();
     }
 

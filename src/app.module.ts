@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
@@ -10,6 +10,9 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './modules/auth/model/user.model';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtAuthModule } from './modules/jwt-auth/jwt-auth.module';
+import { AuthMiddleware } from './modules/jwt-auth/middleware/auth.middleware';
+import { UserController } from './modules/user/user.controller';
+import { ProfileController } from './modules/profile/profile.controller';
 
 @Module({
   imports: [
@@ -38,9 +41,18 @@ import { JwtAuthModule } from './modules/jwt-auth/jwt-auth.module';
     FlashcardsModule,
     FlashcardCategoriesModule,
     AuthModule,
-    // JwtAuthModule,
+    JwtAuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthMiddleware)
+      .forRoutes(
+        UserController,
+        ProfileController
+      );
+  }
+}
