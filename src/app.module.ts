@@ -9,6 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './modules/auth/model/user.model';
 import { AuthModule } from './modules/auth/auth.module';
+import { JwtAuthModule } from './modules/jwt-auth/jwt-auth.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { AuthModule } from './modules/auth/auth.module';
     FlashcardsModule,
     FlashcardCategoriesModule,
     AuthModule,
+    // JwtAuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

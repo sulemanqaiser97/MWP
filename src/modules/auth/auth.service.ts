@@ -13,8 +13,8 @@ export class AuthService {
   ) { }
 
   async signup(user): Promise<iUser> {
-    const isUserExist = await this.isEmailAlreadyRegister(user.email);
-    if (isUserExist) {
+    const isUserAlreadyExist = await this.getUserByEmail(user.email);
+    if (isUserAlreadyExist) {
       throw new BadRequestException(
         'Email address already exist',
       );
@@ -30,7 +30,7 @@ export class AuthService {
     };
   }
 
-  async isEmailAlreadyRegister(userEmail: string): Promise<Boolean> {
+  async getUserByEmail(userEmail: string): Promise<Boolean> {
     const isUser = await this.userModel.findOne({
       where: {
         email: userEmail
