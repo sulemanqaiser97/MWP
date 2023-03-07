@@ -13,6 +13,7 @@ import { JwtAuthModule } from './modules/jwt-auth/jwt-auth.module';
 import { AuthMiddleware } from './modules/jwt-auth/middleware/auth.middleware';
 import { UserController } from './modules/user/user.controller';
 import { ProfileController } from './modules/profile/profile.controller';
+import { UserProfileMappingModule } from './modules/user_profile_mapping/user_profile_mapping.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { ProfileController } from './modules/profile/profile.controller';
     FlashcardCategoriesModule,
     AuthModule,
     JwtAuthModule,
+    UserProfileMappingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

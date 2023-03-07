@@ -55,7 +55,7 @@ export class AuthService {
 
   async login(userEmail: string, userPassword: string): Promise<iUser> {
     const user = await this.userModel.findOne({
-      where: { email: userEmail, }
+      where: { email: userEmail, },
     });
     if (!user) {
       throw new UnauthorizedException('Invalid email or password');
