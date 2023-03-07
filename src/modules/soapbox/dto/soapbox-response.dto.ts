@@ -1,11 +1,11 @@
-export interface SoapboxPhoneBreakdown {
+export class SoapboxPhoneBreakdown {
   phone: string;
   quality_score: number;
   start: number;
   end: number;
 }
 
-export interface SoapboxWordBreakdown {
+export class SoapboxWordBreakdown {
   quality_score: number;
   target_transcription: string;
   word: string;
@@ -15,7 +15,7 @@ export interface SoapboxWordBreakdown {
   end: number;
 }
 
-export interface SoapboxResult {
+export class SoapboxResult {
   category: string;
   hypothesis_score: number;
   word_breakdown: SoapboxWordBreakdown[];
@@ -23,7 +23,7 @@ export interface SoapboxResult {
   end: number;
 }
 
-export interface SoapboxResponseDto {
+export class SoapboxResponseDto {
   language_code: string;
   result_id: string;
   time: string;
