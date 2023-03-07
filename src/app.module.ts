@@ -4,12 +4,15 @@ import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { FlashcardsModule } from './modules/flashcards/flashcards.module';
-import { FlashcardCategoriesModule } from './modules/flashcard_categories/flashcard_categories.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { User } from './modules/auth/model/user.model';
 import { AuthModule } from './modules/auth/auth.module';
 import { SoapboxModule } from './modules/soapbox/soapbox.module';
+import { FlashcardCategoriesModule } from './modules/flashcard_categories/flashcard_categories.module';
+import flashcardCategoriesSeeder from './seeders/flashcard-categories.seeder';
+import { Sequelize } from 'sequelize-typescript';
+import flashcardsSeeder from './seeders/flashcards.seeder';
+import { FlashcardPilesModule } from './modules/flashcard_piles/flashcard_piles.module';
 
 @Module({
   imports: [
@@ -36,11 +39,19 @@ import { SoapboxModule } from './modules/soapbox/soapbox.module';
     UserModule,
     ProfileModule,
     FlashcardsModule,
-    FlashcardCategoriesModule,
     AuthModule,
     SoapboxModule,
+    FlashcardCategoriesModule,
+    FlashcardPilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly sequelize: Sequelize) {}
+  async onModuleInit() {
+    //await this.sequelize.sync();
+    await flashcardCategoriesSeeder.up(this.sequelize.getQueryInterface());
+    await flashcardsSeeder.up(this.sequelize.getQueryInterface());
+  }
+}
