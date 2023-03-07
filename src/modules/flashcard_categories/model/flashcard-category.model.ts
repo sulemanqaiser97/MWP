@@ -1,13 +1,20 @@
 import { Column, Model, Table } from 'sequelize-typescript';
 
-@Table({ tableName: 'flashcard_categories' })
+@Table({ tableName: 'flashcard_categories', timestamps: true })
 export class FlashcardCategory extends Model<FlashcardCategory> {
-  @Column({ primaryKey: true, autoIncrement: true })
+  @Column({
+    primaryKey: true,
+    allowNull: false,
+  })
   category_id: number;
 
-  @Column
+  @Column({
+    allowNull: false,
+  })
   category_name: string;
 
-  @Column
+  @Column({
+    allowNull: true,
+  })
   description: string;
 }
