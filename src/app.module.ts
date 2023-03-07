@@ -17,6 +17,7 @@ import flashcardCategoriesSeeder from './seeders/flashcard-categories.seeder';
 import { Sequelize } from 'sequelize-typescript';
 import flashcardsSeeder from './seeders/flashcards.seeder';
 import { FlashcardPilesModule } from './modules/flashcard_piles/flashcard_piles.module';
+import { UserProfileMappingModule } from './modules/user_profile_mapping/user_profile_mapping.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { FlashcardPilesModule } from './modules/flashcard_piles/flashcard_piles.
     FlashcardCategoriesModule,
     FlashcardPilesModule,
     JwtAuthModule,
+    UserProfileMappingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
