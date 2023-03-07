@@ -10,4 +10,5 @@ export interface iUser {
     createdAt?: string;
     updatedAt?: string;
   };
+  token: string;
 }
